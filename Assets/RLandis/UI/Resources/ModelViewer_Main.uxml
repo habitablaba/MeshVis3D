@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement style="width: 15%;">
+        <ui:RadioButtonGroup label="Radio Button Group" value="0" choices="Translate, Rotate, Scale" name="mode-select-radio" />
+        <ui:Button text="reset changes" display-tooltip-when-elided="true" name="reset-view-button" style="width: 50%; top: auto;" />
+    </ui:VisualElement>
+</ui:UXML>
