@@ -68,7 +68,7 @@ public class AssetController : MonoBehaviour
         _textureDropdown = _rootVisualElement.Q<DropdownField>("texture-dropdown");
 
         _prefabDropdown.Q<Label>().text = "Prefab";
-        _modelDropdown.Q<Label>().text = "Model";
+        _modelDropdown.Q<Label>().text = "Mesh";
         _materialDropdown.Q<Label>().text = "Material";
         _textureDropdown.Q<Label>().text = "Texture";
 
@@ -94,20 +94,24 @@ public class AssetController : MonoBehaviour
         _models = selection.GetComponentsInChildren<MeshFilter>().Select(mf => mf.sharedMesh).ToList();
         _modelDropdown.choices = _models.Select(o => o.name).ToList();
 
-        _modelDropdown.index = -1;
-        _materialDropdown.index = -1;
-        _textureDropdown.index = -1;
+        _modelDropdown.value = _models.First().name;
     }
 
     private void OnModelSelectionChanged(ChangeEvent<string> changeEvent)
     {
-        _materialDropdown.index = -1;
-        _textureDropdown.index = -1;
+        var newModel = _models.FirstOrDefault(m => m.name == changeEvent.newValue);
+        _modelViewerInstance.SetMesh(newModel);
+
+        // todo; set this index to a material that is on the selected mesh
+        _materialDropdown.SetValueWithoutNotify(string.Empty);
+        _textureDropdown.SetValueWithoutNotify(string.Empty);
     }
 
     private void OnMaterialSelectionChanged(ChangeEvent<string> changeEvent)
     {
         _modelViewerInstance.SetMaterial(_materials.FirstOrDefault(m => m.name == changeEvent.newValue));
+        // todo; set this index to a texture that is on the selected mesh
+        _textureDropdown.SetValueWithoutNotify(string.Empty);
     }
 
     private void OnTextureSelectionChanged(ChangeEvent<string> changeEvent)

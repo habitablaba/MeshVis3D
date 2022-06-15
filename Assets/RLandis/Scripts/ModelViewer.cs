@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -41,6 +42,10 @@ public class ModelViewer : MonoBehaviour
     private Button _resetButton;
     private Quaternion _initialRotation;
 
+    private GameObject _meshObject;
+    private Mesh _selectedMesh;
+    private Material _selectedMaterial;
+    private Texture _selectedTexture;
 
     public void Show(GameObject showThis)
     {
@@ -49,14 +54,43 @@ public class ModelViewer : MonoBehaviour
         _modelObject.transform.SetParent(_modelContainer.transform, false);
     }
 
+    public void SetMesh(Mesh mesh)
+    {
+        if (mesh == null) return;
+        _selectedMesh = mesh;
+        var filters = _modelContainer.GetComponentsInChildren<MeshFilter>();
+        var filter = filters.FirstOrDefault(f => f.gameObject.name == _selectedMesh.name);
+        if (filter == null) return;
+        _meshObject = filter.gameObject;
+    }
+
+    // todo; this is an incredibly naive approach, just
+    //      slamming the material in. Allowing the user to select
+    //      which material to replace would be cool.
     public void SetMaterial(Material material)
     {
         if (material == null) return;
+        if (_meshObject == null) return;
+
+        _selectedMaterial = Instantiate(material);
+
+        var renderer = _meshObject.GetComponent<MeshRenderer>();
+        if (renderer == null) return;
+
+        renderer.sharedMaterial = _selectedMaterial;
     }
 
+    // todo; this is a naive approach which completely disregards materials
+    //      that have more than one texture. Allowing the user to select and
+    //      replace multiple would be cool.
     public void SetTexture(Texture texture)
     {
         if (texture == null) return;
+        if (_meshObject == null) return;
+
+        _selectedTexture = texture;
+        var renderer = _meshObject.GetComponent<MeshRenderer>();
+        renderer.sharedMaterial.mainTexture = texture;
     }
 
     private void Awake()

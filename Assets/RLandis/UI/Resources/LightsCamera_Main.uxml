@@ -1,7 +1,9 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:VisualElement style="width: 10%; position: relative; left: 90%; background-color: rgba(91, 91, 91, 255);">
-        <ui:Button text="Button" display-tooltip-when-elided="true" />
-        <ui:Button text="Button" display-tooltip-when-elided="true" />
-        <ui:Button text="Button" display-tooltip-when-elided="true" />
+    <ui:VisualElement style="width: 10%; position: relative; left: 90%; background-color: rgb(91, 91, 91);">
+        <ui:Button text="Default" display-tooltip-when-elided="true" name="default-button" />
+        <ui:Button text="&quot;Vintage&quot;" display-tooltip-when-elided="true" name="preset-one-button" />
+        <ui:Button text="&quot;Winter&quot;" display-tooltip-when-elided="true" name="preset-two-button" />
+        <ui:Button text="&quot;Summer&quot;" display-tooltip-when-elided="true" name="preset-three-button" />
+        <ui:Button text="&quot;70s Sunset&quot;" display-tooltip-when-elided="true" name="preset-four-button" />
     </ui:VisualElement>
 </ui:UXML>
