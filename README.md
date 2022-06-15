@@ -15,6 +15,9 @@ The visualizer starts empty, so you will need to select something to view. There
 There are transform controls in the top left of the screen. They consist of a radio group for manipulation mode (translate, rotate, scale), and a button to reset the transform. Transform controls are applied by first selecting a mode, then performing a click-and-drag operation on the model being visualized.
 Clicking the reset button sets the model's transform to default.
 
+### Using the prefab buttons
+In the top right corner, there are buttons which control the post processing volume settings. 
+
 ## Approach
 ### Forcing process
 I wanted to force the user into a certain workflow when interacting with the visualizer. This was intended in part to cut down on chaos and scope. I did not want to spend a lot of time thinking about how to handle if the user selected a texture, for example, before selecting something to display the texture on, for example.
